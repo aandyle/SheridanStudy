@@ -1,0 +1,49 @@
+.pad-top {
+  padding-top: 2vh;
+}
+
+.sheridan-lblue {
+  color: #00b2ce !important;
+}
+
+.sheridan-orange {
+  color: #ff5000 !important;
+}
+
+.sub-logo {
+  margin-left: 1vw;
+  font-size: 6vh;
+  padding-top: -2px;
+}
+
+.bg-sheridan-pattern {
+  background-image: url('http://ourbrand.sheridancollege.ca/img/images/pattern-generic-navy-small.jpg');
+  background-position: center;
+  background-repeat: repeat;
+}
+
+.nav-link {
+  color: #d8d8d8 !important;
+}
+
+.nav-link:hover{
+  color: #ff5000 !important;
+}
+
+.logo {
+	height: 7vh;
+}
+
+#flashcard {
+  padding: 2em;
+  border-radius: .5rem;
+  background-color: #f9f9f9;
+}
+
+.carousel-item-height {
+  height: 30vh;
+}
+
+.carousel-card-width {
+  width: 40vw;
+}
