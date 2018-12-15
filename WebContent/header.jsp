@@ -13,7 +13,7 @@
 					<a href="home.jsp" class="nav-link">Discussion	Boards</a>
 				</li>
 				<li class="nav-item">
-					<a href="Controller?action=getAllUsers" class="nav-link">Messages</a>
+					<a href="MessagingController?action=getAllUsers" class="nav-link">Messages</a>
 				</li>
 				<li class="nav-item">
 					<a href="roomBooking.jsp" class="nav-link">Room Bookings</a>
