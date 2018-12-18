@@ -29,10 +29,10 @@ public class AuthFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		String reqURL = ((HttpServletRequest)request).getRequestURI();
 		System.out.println("req url: " + ((HttpServletRequest)request).getRequestURI()); 
-		String login = "/SheridanStudy/";
-		String login2 = "/SheridanStudy/index.html";
-		String login3 = "/SheridanStudy/LoginController";
-		String login4 = "/SheridanStudy/css/style.css";
+		String login = "/";
+		String login2 = "/index.html";
+		String login3 = "/LoginController";
+		String login4 = "/css/style.css";
 		ArrayList<String> arr = new ArrayList();
 		arr.add(login);
 		arr.add(login2);
