@@ -10,6 +10,10 @@
   color: #ff5000 !important;
 }
 
+.sheridan-blue {
+  color: #003767 !important;
+}
+
 .sub-logo {
   margin-left: 1vw;
   font-size: 6vh;
@@ -20,6 +24,12 @@
   background-image: url('http://ourbrand.sheridancollege.ca/img/images/pattern-generic-navy-small.jpg');
   background-position: center;
   background-repeat: repeat;
+}
+
+.bg-sheridan-pattern-lblue {
+  background-image: url('http://ourbrand.sheridancollege.ca/img/images/pattern-generic-lightblue-small.jpg');
+  background-position: center;
+  background-repeat: repeat;	
 }
 
 .nav-link {

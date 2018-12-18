@@ -13,6 +13,7 @@ public class MessageBean implements Serializable {
 	private String messages;
 	private String subject;
 	private int recipientID;
+	private String recipient;
 	private int isRead;
 	private Date date;
 	
@@ -92,14 +93,13 @@ public class MessageBean implements Serializable {
 	}
 
 
+	public String getRecipient() {
+		return recipient;
+	}
 
 
-
-
-
-
-	
-	
-	
+	public void setRecipient(String recipient) {
+		this.recipient = recipient;
+	}
 	
 }

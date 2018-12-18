@@ -25,23 +25,21 @@
 	<div class="container pad-top">
 		<h1 class="display-1 text-center">Room Bookings</h1>
 		<p class="text-center">Please select a date and time slot.</p>
+		<p class="text-center">Bookings are limited to one hour each.</p>
 	</div>
 	
 	<div class="container">
-		<c:choose>
-			<c:when test="${comment==null}">
-				${' '}
-			</c:when>
-			<c:otherwise>
-				<div class="alert alert-danger">
-					${comment}
-				</div>
-			</c:otherwise>
-		</c:choose>
+		<c:if test="${comment != null || dError != null || tError != null }">
+			<div class="alert alert-danger">
+				${comment }
+				${dError}
+				${tError }
+			</div>
+		</c:if>
 	</div>
 	
-	<div class="container">
-		<form action="availability" method="post">
+	<div class="container pb-5 mb-5">
+		<form action="BookingController" method="post">
 			<div class="form-group">
 				<label>Date</label>
 				<input type="text" class="form-control" name="date" placeholder="DD/MM/YYYY"> <span>${dError}</span>
@@ -49,21 +47,21 @@
 			<div class="form-group">
 				<label>Start Time</label>
 				<select class="form-control" name="startat" required>
-					<option value="12:00:00">12:00:00</option>
-					<option value="12:30:00">12:30:00</option>
-					<option value="13:00:00">13:00:00</option>
-					<option value="13:30:00">13:30:00</option>
-					<option value="14:00:00">14:00:00</option>
+					<option value="12">12:00:00</option>
+					<option value="13">13:00:00</option>
+					<option value="14">14:00:00</option>
+					<option value="15">15:00:00</option>
+					<option value="16">16:00:00</option>
 				</select>
 			</div>
 			<div class="form-group">
 				<label>End Time</label>
 				<select class="form-control" name="endat" required>
-					<option value="12:00:00">12:00:00</option>
-					<option value="12:30:00">12:30:00</option>
-					<option value="13:00:00">13:00:00</option>
-					<option value="13:30:00">13:30:00</option>
-					<option value="14:00:00">14:00:00</option>
+					<option value="13">13:00:00</option>
+					<option value="14">14:00:00</option>
+					<option value="15">15:00:00</option>
+					<option value="16">16:00:00</option>
+					<option value="17">17:00:00</option>
 				</select>
 			</div>
 			<div class="d-flex justify-content-center">
@@ -72,6 +70,7 @@
 			</div>				
 		</form>
 	</div>
-
+	<!-- footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

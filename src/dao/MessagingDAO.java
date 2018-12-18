@@ -25,7 +25,7 @@ public class MessagingDAO {
 			conn = DBUtil.getConnection();
 
 			PreparedStatement pStmt = conn.prepareStatement(
-					"insert into messages" + "(Messages,isRead,date,SenderID,RecipientID)" + "values(?,?,?,?,?,?)");
+					"insert into messages" + "(Messages,isRead,date,SenderID,RecipientID)" + "values(?,?,?,?,?)");
 
 			System.out.println(message.getSenderID());
 			
@@ -151,9 +151,12 @@ public class MessagingDAO {
 		System.out.println(userID);
 		try {
 			conn = DBUtil.getConnection();
-			PreparedStatement stmt = conn.prepareStatement("select * from messages where SenderID = ? AND RecipientID = ? ORDER BY date");
+			PreparedStatement stmt = conn.prepareStatement("select * FROM messages WHERE SenderID = ? and recipientid = ? OR SenderID = ? and recipientid = ? ORDER BY date");
 			stmt.setInt(1, userID);
 			stmt.setInt(2, resId);
+			stmt.setInt(3, resId);
+			stmt.setInt(4, userID);
+			DiscussionDAO user = new DiscussionDAO();
 			ResultSet rSet = stmt.executeQuery();
 
 			while (rSet.next()) {
@@ -162,8 +165,7 @@ public class MessagingDAO {
 				message.setMessageID(rSet.getInt("MessageID"));
 				message.setSenderID(rSet.getInt("SenderID"));
 				message.setMessages(rSet.getString("Messages"));
-
-//				message.setSubject(rSet.getString("Subject"));
+				message.setRecipient(user.getUserDetail(rSet.getInt("SenderID")));
 				message.setRecipientID(rSet.getInt("RecipientID"));
 				message.setIsRead(rSet.getInt("isRead"));
 				message.setDate(rSet.getDate("date"));
@@ -269,81 +271,5 @@ public class MessagingDAO {
 
 	}
 
-	// 5. Possible Edit Message?
-
-	// student can use
-//	public void updateMessage(MessageBean message) {
-//		Connection conn = null;
-//
-//		try {
-//			conn = DBUtil.getConnection();
-//
-//			PreparedStatement pStmt = conn
-//					.prepareStatement("update messages set Messages=?," + "isRead=?,date=?");
-//
-//			pStmt.setString(1, message.getMessages());
-////			pStmt.setString(2, message.getSubject());
-//			pStmt.setInt(2, message.getIsRead());
-//			pStmt.setDate(3, new java.sql.Date(message.getDate().getTime())); // ask about this how to change to get
-//																				// time and date, not just time
-//
-//			pStmt.executeUpdate();
-//
-//		}
-//
-//		catch (Exception e) {
-//
-//		}
-//
-//		finally {
-//			DBUtil.closeConnection(conn);
-//		}
-//
-//	}
-
-	// //Teacher can use (Secondary)
-	//
-	// public void RemoveUser(int userID) {
-	// Connection conn = null;
-	//
-	//
-	//
-	// try {
-	// conn=DBUtil.getConnection();
-	//
-	//
-	//
-	// PreparedStatement pStmt = conn.prepareStatement("delete from messages where
-	// MessagesID=?");
-	//
-	//
-	// pStmt.setInt(1, userID);// whatever value is going to the question mark
-	// pStmt.executeUpdate();
-	// //THIS SECTION WILL DELETE THE USER
-	// // It is not setting it to 1, it is deleting the UserID but that is in the
-	// first position
-	//
-	// }
-	//
-	// catch (Exception e) {
-	// e.getMessage();
-	//
-	// }
-	//
-	//
-	// finally {
-	// DBUtil.closeConnection(conn);
-	// }
-	//
-	// }
-	//
-
-	// Add display all messages section
-
-	// add message
-	// get all messages (Get Message History)
-	// delete message
-	// Edit Messages???
-	// Possible Search for specific message in messages (need to do still)
 
 }

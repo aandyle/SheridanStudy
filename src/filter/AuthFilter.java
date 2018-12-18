@@ -39,7 +39,7 @@ public class AuthFilter implements Filter {
 		arr.add(login3);
 		arr.add(login4);
 		User u = (User)((HttpServletRequest)request).getSession().getAttribute("user");
-				
+		
 		if(reqURL != null && arr.contains(reqURL)) {
 			System.out.println("logging in");
 			chain.doFilter(request, response);
@@ -50,7 +50,7 @@ public class AuthFilter implements Filter {
 			System.out.println("not logged in");
 			request.getRequestDispatcher("unauthorized.jsp").forward(request, response);
 		}
-
+//		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {

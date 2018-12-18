@@ -28,7 +28,7 @@ import model.User;
 public class MessagingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private MessagingDAO messagingDAO;
+	private MessagingDAO messagingDAO = new MessagingDAO();
 	private static String CREATE_MESSAGE = "/CreateMessages.jsp";
 	private static String DISPLAY_MESSAGES = "/EmailHome.jsp";
 	private static String SELECT_USER = "/SelectUser.jsp";
@@ -37,8 +37,6 @@ public class MessagingController extends HttpServlet {
 
 	public MessagingController() {
 		super();
-		messagingDAO = new MessagingDAO();
-
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -50,11 +48,7 @@ public class MessagingController extends HttpServlet {
 		HttpSession session = request.getSession();
 		RequestDispatcher view = null;
 
-		if (action.equalsIgnoreCase("createmessage")) {
-			  
-			
-//			Object userid= request.getAttribute("userid"); //we are obtaining the userid value and passing it into userid
-			
+		if (action.equalsIgnoreCase("createmessage")) {			
 			String resId = request.getParameter("userid");
 			String usern = request.getParameter("usern");
 			
@@ -66,14 +60,8 @@ public class MessagingController extends HttpServlet {
 			request.setAttribute("messages", messages);
 			request.setAttribute("resId", resId);
 			request.setAttribute("usern", usern);
-			
-//			session.setAttribute("recipcientID", userid); //this is also the recipicient id, the person recieving
-			
-			
-			view= request.getRequestDispatcher(CREATE_MESSAGE);
-			
-		
 
+			view = request.getRequestDispatcher(CREATE_MESSAGE);
 		}
 
 		else if (action.equalsIgnoreCase("SelectUser")) {
@@ -84,13 +72,8 @@ public class MessagingController extends HttpServlet {
 			view = request.getRequestDispatcher(SELECT_USER); //select the user page 
 
 			view.forward(request, response);
-			
-			
-
 		}
-
 		/// Get all users
-
 		else if (action.equalsIgnoreCase("getAllUsers")) {
 			List<User> users = new ArrayList<User>();
 
@@ -102,11 +85,6 @@ public class MessagingController extends HttpServlet {
 			view = request.getRequestDispatcher(forward);
 
 		}
-		
-		
-		
-		
-
 		// Show all the Messages
 
 		else if (action.equalsIgnoreCase("getAllMessages")) {
@@ -126,35 +104,6 @@ public class MessagingController extends HttpServlet {
 			view = request.getRequestDispatcher(forward);
 
 		}
-
-		// // Checking the Show Message History
-		// if(action.equalsIgnoreCase("history")) {
-		//
-		// //where are they getting the UserID from
-		// int userID=Integer.parseInt(request.getParameter("MailBoxID"));
-		//
-		//
-		// forward=DISPLAY_MESSAGES;
-		//
-		// request.setAttribute("messages", messagingDAO.getMessageHistory(userID));
-		//
-		//
-		// }
-		//
-		// else if(action.equalsIgnoreCase("delete")) {
-		//
-		// }
-		//
-		//
-		// //The add message section here...
-		// else {
-		//
-		// forward=CREATE_MESSAGE;
-		// }
-		//
-		// RequestDispatcher view = request.getRequestDispatcher(forward);
-		// view.forward(request, response);
-		
 	
 		view.forward(request, response);
 
@@ -201,10 +150,7 @@ public class MessagingController extends HttpServlet {
 			
 			response.sendRedirect("MessagingController?action=getAllUsers");
 			
-		}
-		
-		else if(submit.equalsIgnoreCase("Delete")) {
-			
+		}else if(submit.equalsIgnoreCase("Delete")) {			
 			String uName = request.getParameter("uName");
 			String msId = request.getParameter("msID");
 			int messageID = Integer.parseInt(msId);
@@ -214,43 +160,11 @@ public class MessagingController extends HttpServlet {
 			int respid = Integer.parseInt(resid);
 			messagingDAO.DeleteMessage(messageID);
 			response.sendRedirect("MessagingController?action=createmessage&userid="+respid+"&usern="+uName);
-			
 		} else {
 			System.out.println("ERRORR!!! inside the controller submit");
 			
 		}
-		//String submit =request.getParameter("add");
-		
-		
-		
-		
-		
-		
-//		if(submit.equalsIgnoreCase("send")) {
-//			String emailMessages = request.getParameter("emailmessage");
-//			String subject = request.getParameter("subject");
-//		
-//			
-//			MessageBean sendMessage = new MessageBean();	
-//			
-//	sendMessage.setMessages(emailMessages);
-//	sendMessage.setSubject(subject);  			//remember to fix this and cast
-//	
-//request.setAttribute("sendmessage", sendMessage);
-//
-//
-//			
-//		
-//		}
-		
-		
-		//REMEMBER TO REMOVE SESSION.REMOVE ATTRIBUTE TOID make sure to remove from the session 
 
-		// MessageBean message = new MessageBean();
-		//
-		// message.setSubject(request.getParameter("Subject"));
-
-//		doGet(request, response);
 	}
 
 }

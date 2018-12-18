@@ -20,7 +20,7 @@
 		<!-- menu bar / banner -->
 		<jsp:include page="header.jsp"></jsp:include>
 		
-		<div class="container pad-top">
+		<div class="container pad-top pb-5 mb-5">
 			<h1 class="display-1 text-center">Discussions</h1>
 			<h1 class="text-center">Search Result for: "${title}"</h1>
 
@@ -99,6 +99,7 @@
 				</ul>
 			</nav>
 		</div>
-		
+		<!-- footer -->
+		<jsp:include page="footer.jsp"></jsp:include>
 	</body>
 </html>

@@ -1,5 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="container-fluid pad-top bg-sheridan-pattern">
-	<nav class="navbar navbar-expand-md navbar-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark">
 		<a href="home.jsp" class="navbar-brand sheridan-lblue d-flex align-self-end">
 			<img src="http://webdesign.sheridanc.on.ca/images/sheridanlogo.png"	alt="" class="img-fluid logo"> 
 			<span class="sub-logo"> <strong>Study</strong> </span>
@@ -21,8 +22,13 @@
 				<li class="nav-item">
 					<a href="FlashcardController?action=listsets" class="nav-link">Flashcards</a>
 				</li>
+				<c:if test="${sessionScope.user.admin }">
+					<li class="nav-item">
+						<a href="AdminController?action=load" class="nav-link">User Management</a>
+					</li>
+				</c:if>
 				<li class="nav-item">
-					<a href="#" class="nav-link">Log Out</a>
+					<a href="LoginController?action=logout" class="nav-link">Log Out</a>
 				</li>
 			</ul>
 		</div>

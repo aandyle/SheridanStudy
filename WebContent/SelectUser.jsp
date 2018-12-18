@@ -24,34 +24,42 @@
 	
 	<div class="container pad-top">
 		<h1 class="display-1 text-center">Messaging</h1>
+		<p class="text-center">Select a user to message below.</p>
 	</div>
 	
-	<div class="container d-flex justify-content-center pad-top">
-		<table border="1">
+	<div class="container pad-top pb-5 mb-5">
+		<table class="table table-hover">
 			<thead>
 				<tr>
-					<th>User ID:</th>
-					<th>First Name</th>
-					<th>Last Name</th>
+					<th scope="col">UserID</th>
+					<th scope="col">First Name</th>
+					<th scope="col">Last Name</th>
+					<th class="text-center"></th>
+					<!-- leave empty for buttons -->
 				</tr>
 			</thead>
-	
+			
 			<tbody>
-				<c:forEach var="user" items="${users}">
-					<tr>
-						<td><a
-							href="MessagingController?action=createmessage&userid=${user.userId}&usern=${user.firstName}">
-								${user.userId}</a></td>
-						<td><a
-							href="MessagingController?action=createmessage&userid=${user.userId}&usern=${user.firstName}">${user.firstName}</a></td>
-						<td><a
-							href="MessagingController?action=createmessage&userid=${user.userId}&usern=${user.firstName}">${user.lastName}</a></td>
-	
-					</tr>
+				<c:forEach items="${users}" var="user">
+					<c:if test="${user.userId != sessionScope.user.userId }">
+						<tr>
+							<td>${user.userId}</td>
+							<td>${user.firstName}</td>
+							<td>${user.lastName}</td>
+							<td class="text-center">
+								<a href="MessagingController?action=createmessage&userid=${user.userId}&usern=${user.firstName}" class="btn btn-outline-primary">
+									Message
+								</a>
+							</td>
+						</tr>
+					</c:if>
 				</c:forEach>
 			</tbody>
 		</table>
 	</div>
+	
+	<!-- footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

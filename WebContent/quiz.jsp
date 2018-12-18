@@ -28,7 +28,7 @@
   <!-- menu bar / banner -->
   <jsp:include page="header.jsp"></jsp:include>
   
-  <div class="container">
+  <div class="container pad-top">
     <h1 class="display-1 text-center">Flashcards</h1>
   </div>
 
@@ -51,7 +51,7 @@
     </div>
   </div>
 
-  <div class="container pad-top">
+  <div class="container pad-top pb-5 mb-5">
     <div class="row justify-content-center">
       <a href="#flashcard" role="button" data-slide="next" class=" btn btn-outline-primary">Flip</a>
     </div>
@@ -61,7 +61,8 @@
     </div>
 
   </div>
-
+	<!-- footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

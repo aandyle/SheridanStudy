@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
 
@@ -32,27 +33,29 @@
 	<!-- menu bar / banner -->
 	<jsp:include page="header.jsp"></jsp:include>
 	
-	<div class="container">
+	<div class="container pad-top">
 		<h1 class="display-1 text-center">Flashcards</h1>
 	</div>
-
+	
 	<div class="container pad-top">
 		<div class="row">
 			<div class="col-sm-6">
 				<h2>${setname }</h2>
 			</div>
 			<div class="col-sm-6 text-right">
-				<a href="FlashcardController?action=startquiz&setid=${setid}" class="btn btn-primary">Start Quiz</a> 
+				<c:if test="${fn:length(cards) > 0 }">
+					<a href="FlashcardController?action=startquiz&setid=${setid}" class="btn btn-primary">Start Quiz</a> 
+				</c:if>
 				<a href="FlashcardController?action=addcard&setid=${setid}" class="btn btn-primary">Add Card</a>
 				<a href="FlashcardController?action=listsets" class="btn btn-secondary">Back</a>
 			</div>
 		</div>
 	</div>
 
-	<div class="container pad-top">
+	<div class="container pad-top pb-5 mb-5">
 		<div class="card-columns">
 
-			<c:forEach var="card" items="${cards }">
+			<c:forEach var="card" items="${cards}">
 				<div class="card">
 					<div class="card-body">
 						<h5 class="card-title">${card.frontText }</h5>
@@ -65,7 +68,8 @@
 			
 		</div>
 	</div>
-
+	<!-- footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

@@ -28,7 +28,7 @@
   <!-- menu bar / banner -->
   <jsp:include page="header.jsp"></jsp:include>
   
-  <div class="container">
+  <div class="container pad-top">
     <h1 class="display-1 text-center">Flashcards</h1>
   </div>
 
@@ -38,13 +38,14 @@
     <h4 class="text-danger">${card.backText}</h4>
   </div>
 
-  <div class="container pad-top">
+  <div class="container pad-top pb-5 mb-5">
     <div class="row justify-content-center">
       <a href="FlashcardController?action=viewset&setid=${card.setId}" class="btn btn-outline-secondary">Cancel</a> &nbsp;
       <a href="FlashcardController?action=confirmdeletecard" class="btn btn-danger">Delete</a>
     </div>
   </div>
-
+	<!-- footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 
 </html>

@@ -14,11 +14,23 @@ import model.User;
 @WebServlet("/LoginController")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	UserDAO dao;
 
     public LoginController() {
         super();
         dao = new UserDAO();
+    }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	HttpSession session = request.getSession();
+    	User u = (User)session.getAttribute("user");
+    	String action = request.getParameter("action");
+    	
+    	if(action.equalsIgnoreCase("logout") && session != null) {
+    		session.invalidate();
+    		response.sendRedirect("index.html");
+    	}
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

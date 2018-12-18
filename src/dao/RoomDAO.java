@@ -32,7 +32,7 @@ public class RoomDAO {
 			ResultSet rset = pStmt.executeQuery();
 
 			if (rset.next()) {
-				System.out.println("Boking not Available!");
+				System.out.println("Booking not Available!");
 				test = false;
 
 			} else {

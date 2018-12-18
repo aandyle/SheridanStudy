@@ -25,7 +25,7 @@
 		<h1 class="display-1 text-center">Room Bookings</h1>
 	</div>
 	
-	<div class="container pad-top">
+	<div class="container pad-top pb-5 mb-5">
 		<table class="table table-hover">
 			<thead>
 				<tr>
@@ -50,6 +50,7 @@
 			</tbody>
 		</table>
 	</div>
-
+	<!-- footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

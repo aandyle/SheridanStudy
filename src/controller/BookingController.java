@@ -20,12 +20,11 @@ import dao.*;
 import model.*;
 import model.Roombooking;
 
-@WebServlet("/availability")
-public class availability extends HttpServlet {
+@WebServlet("/BookingController")
+public class BookingController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
-	public availability() {
+	public BookingController() {
 
 	}
 
@@ -38,7 +37,7 @@ public class availability extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		if (request.getParameter("select") != null) {
-			
+
 			List<Roombooking> bookings = new ArrayList<>();
 			bookings = dao.getRoomBookings();
 			session.setAttribute("bookings", bookings);
@@ -47,24 +46,46 @@ public class availability extends HttpServlet {
 		} else {
 			boolean test;
 			String comment = null;
+			String dError = null;
+			String tError = null;
 			String startat = request.getParameter("startat");
 			String endat = request.getParameter("endat");
 			String date = request.getParameter("date");
 			Date today = new Date();
-		//	System.out.println(today);
+
 			Date d;
 			try {
 				d = new SimpleDateFormat("dd/MM/yyyy").parse(date);
-		//		System.out.println(d);
-				if (d.compareTo(today) < 0) {
-					String dError = "Wrong date!";
+				int dif = (Integer.parseInt(endat)) - (Integer.parseInt(startat));
+				if ((d.compareTo(today) < 0) || (dif != 1)) {
+					if (d.compareTo(today) < 0) {
+						dError = "Invalid date!";
+					} else {
+						dError = null;
+					}
+					if (dif != 1) {
+						tError = "Invalid time!";
+					} else {
+						tError = null;
+						
+					}
+					session.setAttribute("tError", tError);
 					session.setAttribute("dError", dError);
 					rd = request.getRequestDispatcher("availableRooms.jsp");
 					rd.forward(request, response);
 
-		//			System.out.println("tt");
+					// System.out.println("tt");
 				} else {
-					User user = (User)session.getAttribute("user");
+				//	System.out.println("tt");
+					dError = null;
+					tError = null;
+					session.setAttribute("tError", tError);
+					session.setAttribute("dError", dError);
+					startat = startat + ":00:00";
+					endat = endat + ":00:00";
+					System.out.println(startat);
+					
+					User user = (User) session.getAttribute("user");
 					int userId = user.getUserId();
 					booking.setUserid(userId);
 					booking.setStartat(startat);

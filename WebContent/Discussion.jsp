@@ -88,7 +88,7 @@
 		</div>
 		
 		<!-- post a reply -->
-		<div class="container pb-5">
+		<div class="container pb-5 mb-5">
 			<form action="DiscussionController" method="post">
 				<div class="row d-flex justify-content-center">
 					<div class="col-sm-10">
@@ -106,5 +106,7 @@
 				</div>
 			</form>
 		</div>
+		<!-- footer -->
+		<jsp:include page="footer.jsp"></jsp:include>
 	</body>
 </html>

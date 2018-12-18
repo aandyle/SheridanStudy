@@ -24,7 +24,9 @@
 	<jsp:include page="header.jsp"></jsp:include>
 
 	<c:set var="comment" scope="session" value="${null}" />
-
+	<c:set var="dError" scope ="session" value="${null}"/>
+	<c:set var="tError" scope ="session" value="${null}"/>
+		
 	<%
 		//String comment = " ";
 		//session.setAttribute("comment", comment);
@@ -35,8 +37,8 @@
 		<h1 class="display-1 text-center">Room Bookings</h1>
 	</div>
 	
-	<div class="container">
-		<p class="text-center">Room are available only between 12:00pm to 02:00pm.</p>
+	<div class="container pb-5 mb-5">
+		<p class="text-center">Room are available only between 12:00pm and 05:00pm.</p>
 		
 		
 		<form action="availableRooms.jsp">
@@ -47,16 +49,17 @@
 			</div>
 		</form>
 		
-		<form action="availability" method="post">
+		<form action="BookingController" method="post">
 			<div class="row d-flex justify-content-center">
 				<div class="form-group">
 					<input type="submit" class="btn btn-outline-primary form-control" value="View Bookings" name="select">
 				</div>
 			</div>
 		</form>
-		
 	</div>
 	
+	<!-- footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

@@ -27,7 +27,7 @@
 		Roombooking booking = (Roombooking) session.getAttribute("booking");
 	%>
 	
-	<div class="container pad-top">
+	<div class="container pad-top pb-5">
 		<h1 class="display-1 text-center">Room Bookings</h1>
 		
 		<h4 class="text-center">Booking Successful!</h4>
@@ -37,6 +37,9 @@
 		<p class="text-center">End time: ${booking.endat}</p>
 		
 	</div>
+	
+	<!-- footer -->
+	<jsp:include page="footer.jsp"></jsp:include>
 	
 </body>
 </html>
